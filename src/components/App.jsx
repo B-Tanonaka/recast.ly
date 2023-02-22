@@ -9,17 +9,21 @@ const { useState, useEffect } = React;
 
 var App = () => {
 
-  const [currentVideo, setCurrentVideo] = useState({});
+  const [currentVideo, setCurrentVideo] = useState(null);
   const [list, setList] = useState([]);
-  useEffect(() => {
-    let ignore = false;
-    searchYouTube('cat videos', (data) => { setList(data); });
-    setCurrentVideo(list[0]);
 
-    return () => {
-      ignore = true;
-    };
-  }, [list, currentVideo]);
+  const getVideos = (query) => {
+    console.log('anything');
+    searchYouTube(query, (data) => {
+      setList(data);
+      setCurrentVideo(data[0]);
+      console.log(data[0]);
+    });
+  };
+
+  useEffect(() => {
+    getVideos('cat videos');
+  }, []);
 
   return (
     <div>
@@ -33,7 +37,7 @@ var App = () => {
           <div><h5><VideoPlayer video={currentVideo}/></h5></div>
         </div>
         <div className="col-md-5">
-          <div><h5><VideoList videos={list} currentVideo={currentVideo} setCurrentVideo={setCurrentVideo}/></h5></div> {/* TODO when title is clicked, dynamically change video */}
+          <div><h5><VideoList videos={list} currentVideo={currentVideo} setCurrentVideo={setCurrentVideo}/></h5></div>
         </div>
       </div>
     </div>

@@ -1,24 +1,26 @@
 import searchYouTube from '../lib/searchYouTube.js';
-
 const { useState } = React;
-const { useEffect } = React;
 
 var Search = (props) => {
   const [searchText, setSearchText] = useState('');
+  var limiter = false;
+  setInterval(() => { limiter = !limiter; }, 500);
+  var typingSearch = (event) => {
+    if (limiter) {
+      return;
+    } else {
+      handleSubmit(event);
+    }
+  };
   var handleSubmit = (event) => {
     event.preventDefault();
+    setSearchText(event.target.value);
     var data = searchYouTube(searchText, (data) => { props.setList(data); });
-    //setSearchText(event.target.value);
-    //console.log(searchText);
-
-    console.log('You have typed!');
   };
-
-  //searchYouTube('cat videos', (data) => { console.log(data); });
 
   return (
     <div className="search-bar form-inline" >
-      <input className="form-control" type="text" onInput={(event) => { setSearchText(event.target.value); console.log(searchText); }}/>
+      <input className="form-control" type="text" value={searchText} onChange={(event) => handleSubmit(event)}/>
       <button className="btn hidden-sm-down" onClick={(event) => handleSubmit(event)}>
         <span className="glyphicon glyphicon-search"></span>
       </button>
