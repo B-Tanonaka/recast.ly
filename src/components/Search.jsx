@@ -2,25 +2,12 @@ import searchYouTube from '../lib/searchYouTube.js';
 const { useState, useEffect } = React;
 
 var Search = (props) => {
-  // const [searchText, setSearchText] = useState('');
-  // var limiter = false;
-  // setInterval(() => { limiter = !limiter; }, 500);
-  // var typingSearch = (event) => {
-  //   if (limiter) {
-  //     return;
-  //   } else {
-  //     handleSubmit(event);
-  //   }
-  // };
-
-  // var handleChange = (event) => {
-  //   this.setState({ text: event.target.value}, handleSubmit);
-  // };
   let timeout = null;
 
   var handleSubmit = (event) => {
     event.preventDefault();
     let query = event.target.value;
+
     clearTimeout(timeout);
     timeout = setTimeout(() => {
       searchYouTube(query, (data) => { props.setList(data); });

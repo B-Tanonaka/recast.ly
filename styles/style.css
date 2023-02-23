@@ -84,6 +84,14 @@ body {
   padding-left: 20px;
 }
 
+h4 {
+  display: inline-flex;
+  justify-content: center;
+  align-items: left;
+  font-size: 12px;
+  padding-left: 15px;
+}
+
 h5 {
   border: 2px solid red;
   text-align: center;

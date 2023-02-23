@@ -10,6 +10,8 @@ var VideoPlayer = (props) => {
       <div className="video-player-details">
         <h3>{props.video.snippet.title}</h3>
         <div>{props.video.snippet.description}</div>
+        <h4>{props.video.snippet.publishTime}</h4>
+        <h4>{props.video.snippet.channelTitle}</h4>
       </div>
     </div>
   );

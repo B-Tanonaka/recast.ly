@@ -14,6 +14,7 @@ var App = () => {
 
   const getVideos = (query) => {
     searchYouTube(query, (data) => {
+      console.log('data: ', data);
       setList(data);
       setCurrentVideo(data[0]);
     });
