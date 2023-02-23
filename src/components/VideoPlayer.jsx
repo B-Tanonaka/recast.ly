@@ -1,8 +1,7 @@
 var VideoPlayer = (props) => {
   // video !== undefined ? divs : hold on man
-  console.log(props.video);
   return !props.video ? (
-    <div>hold on man</div>
+    <div className="video-player">hold on man</div>
   ) : (
     <div className="video-player">
       <div className="embed-responsive embed-responsive-16by9">

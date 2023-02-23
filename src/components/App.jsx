@@ -13,11 +13,9 @@ var App = () => {
   const [list, setList] = useState([]);
 
   const getVideos = (query) => {
-    console.log('anything');
     searchYouTube(query, (data) => {
       setList(data);
       setCurrentVideo(data[0]);
-      console.log(data[0]);
     });
   };
 
